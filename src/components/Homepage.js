@@ -53,11 +53,11 @@ function Homepage(props) {
     }
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     let isCelsius = tempScale === "celsius" ? true : false;
     if (cityData.id) {
-      getFiveDaysWeather(cityData.id, isCelsius);
-      getCityWeather(cityData.id);
+      await getFiveDaysWeather(cityData.id);
+      await getCityWeather(cityData.id);
     }
   }, [cityData]);
 
@@ -79,7 +79,7 @@ function Homepage(props) {
       });
   };
 
-  const getFiveDaysWeather = async (cityKey, inCelsius) => {
+  const getFiveDaysWeather = async (cityKey) => {
     const days = [
       "Sunday",
       "Monday",
@@ -92,11 +92,9 @@ function Homepage(props) {
     let stringDay = "";
     let weeklyArr = weeklyWeather ?? [];
 
-    let response = await axios
+    let response_c = await axios
       .get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${
-          process.env.REACT_APP_API_KEY
-        }&metric=${String(inCelsius)}`
+        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=true`
       )
       .then((res) => res.data.DailyForecasts)
       .then((res) => {
@@ -105,45 +103,40 @@ function Homepage(props) {
           if (weeklyArr[i] === undefined) {
             weeklyArr[i] = { day: stringDay };
           }
-          if (tempScale === "celsius") {
-            weeklyArr[i].minTempCelsius = Math.round(
-              res[i].Temperature.Minimum.Value
-            );
-            weeklyArr[i].maxTempCelsius = Math.round(
-              res[i].Temperature.Maximum.Value
-            );
-          } else {
-            weeklyArr[i].minTempFahrenheit = Math.round(
-              res[i].Temperature.Minimum.Value
-            );
-            weeklyArr[i].maxTempFahrenheit = Math.round(
-              res[i].Temperature.Maximum.Value
-            );
-          }
+          weeklyArr[i].minTempCelsius = Math.round(
+            res[i].Temperature.Minimum.Value
+          );
+          weeklyArr[i].maxTempCelsius = Math.round(
+            res[i].Temperature.Maximum.Value
+          );
         }
-        setWeeklyWeather(weeklyArr);
       })
       .catch((err) => {
         console.warn(err);
       });
-  };
 
-  useEffect(() => {
-    if (
-      tempScale === "fahrenheit" &&
-      weeklyWeather[0] &&
-      weeklyWeather[0].minTempFahrenheit === undefined
-    ) {
-      getFiveDaysWeather(cityData.id, false);
-    }
-    if (
-      tempScale === "celsius" &&
-      weeklyWeather[0] &&
-      weeklyWeather[0].minTempCelsius === undefined
-    ) {
-      getFiveDaysWeather(cityData.id, true);
-    }
-  }, [tempScale]);
+    let response_f = await axios
+      .get(
+        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=false`
+      )
+      .then((res) => res.data.DailyForecasts)
+      .then((res) => {
+        for (let i = 0; i < res.length; i++) {
+          stringDay = days[new Date(res[i].Date).getDay()];
+          weeklyArr[i].minTempFahrenheit = Math.round(
+            res[i].Temperature.Minimum.Value
+          );
+          weeklyArr[i].maxTempFahrenheit = Math.round(
+            res[i].Temperature.Maximum.Value
+          );
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
+
+    setWeeklyWeather(weeklyArr);
+  };
 
   const isInFavorites = () => {
     for (let i = 0; i < favoriteCities.length; i++) {

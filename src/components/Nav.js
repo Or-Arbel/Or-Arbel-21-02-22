@@ -24,7 +24,7 @@ function Nav(props) {
   return (
     <nav className={props.theme === "light" ? "" : "dark-nav"}>
       <ul className="nav-links">
-        <Link to="/Or-Arbel-21-02-22/">
+        <Link to="/Or-Arbel-21-02-22">
           <li>Homepage</li>
         </Link>
         <Link to="/favorites">
