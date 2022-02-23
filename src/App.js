@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/Or-Arbel-21-02-22/"
             component={() => {
               return <Homepage theme={theme} />;
             }}
