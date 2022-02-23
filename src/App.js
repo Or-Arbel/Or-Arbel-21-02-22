@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Nav from "./components/Nav";
 import Homepage from "./components/Homepage";
 import Favorites from "./components/Favorites";
@@ -15,7 +20,7 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/Or-Arbel-21-02-22/"
+            path="/"
             component={() => {
               return <Homepage theme={theme} />;
             }}
@@ -27,6 +32,7 @@ function App() {
               return <Favorites theme={theme} />;
             }}
           />
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>

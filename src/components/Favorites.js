@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { remove } from "../redux/favoritesSlice";
 import { setCity } from "../redux/citySlice";
@@ -36,7 +36,7 @@ function Favorites(props) {
                   Remove
                 </button>
                 <Link
-                  to="/Or-Arbel-21-02-22"
+                  to="/"
                   className="favorite-div"
                   onClick={() => favoriteClicked(e)}
                 >

@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import { CgSun } from "react-icons/cg";
 import { HiMoon } from "react-icons/hi";
 
@@ -22,12 +23,12 @@ function Nav(props) {
   };
 
   return (
-    <nav className={props.theme === "light" ? "" : "dark-nav"}>
+    <nav className="nav">
       <ul className="nav-links">
-        <Link to="/Or-Arbel-21-02-22">
+        <Link to="/">
           <li>Homepage</li>
         </Link>
-        <Link to="/favorites">
+        <Link to="/favorites/">
           <li>Favorites</li>
         </Link>
       </ul>
