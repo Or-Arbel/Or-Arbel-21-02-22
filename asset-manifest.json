@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Or-Arbel-21-02-22/static/css/main.3a383918.chunk.css",
+    "main.css": "/Or-Arbel-21-02-22/static/css/main.f05acfe1.chunk.css",
     "main.js": "/Or-Arbel-21-02-22/static/js/main.acac7961.chunk.js",
     "main.js.map": "/Or-Arbel-21-02-22/static/js/main.acac7961.chunk.js.map",
     "runtime-main.js": "/Or-Arbel-21-02-22/static/js/runtime-main.27d60976.js",
@@ -8,13 +8,13 @@
     "static/js/2.83864651.chunk.js": "/Or-Arbel-21-02-22/static/js/2.83864651.chunk.js",
     "static/js/2.83864651.chunk.js.map": "/Or-Arbel-21-02-22/static/js/2.83864651.chunk.js.map",
     "index.html": "/Or-Arbel-21-02-22/index.html",
-    "static/css/main.3a383918.chunk.css.map": "/Or-Arbel-21-02-22/static/css/main.3a383918.chunk.css.map",
+    "static/css/main.f05acfe1.chunk.css.map": "/Or-Arbel-21-02-22/static/css/main.f05acfe1.chunk.css.map",
     "static/js/2.83864651.chunk.js.LICENSE.txt": "/Or-Arbel-21-02-22/static/js/2.83864651.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.27d60976.js",
     "static/js/2.83864651.chunk.js",
-    "static/css/main.3a383918.chunk.css",
+    "static/css/main.f05acfe1.chunk.css",
     "static/js/main.acac7961.chunk.js"
   ]
 }
