@@ -15,14 +15,14 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/Or-Arbel-21-02-22"
+            path="/Or-Arbel-21-02-22/"
             component={() => {
               return <Homepage theme={theme} />;
             }}
           />
           <Route
             exact
-            path="/favorites"
+            path="/favorites/"
             component={() => {
               return <Favorites theme={theme} />;
             }}
