@@ -36,7 +36,7 @@ function Favorites(props) {
                   Remove
                 </button>
                 <Link
-                  to="/"
+                  to="/Or-Arbel-21-02-22/"
                   className="favorite-div"
                   onClick={() => favoriteClicked(e)}
                 >
