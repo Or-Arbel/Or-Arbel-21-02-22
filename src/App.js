@@ -20,7 +20,7 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/Or-Arbel-21-02-22/"
             component={() => {
               return <Homepage theme={theme} />;
             }}
@@ -32,7 +32,7 @@ function App() {
               return <Favorites theme={theme} />;
             }}
           />
-          <Redirect to="/" />
+          <Redirect to="/Or-Arbel-21-02-22/" />
         </Switch>
       </div>
     </Router>
