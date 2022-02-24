@@ -13,6 +13,8 @@ import Favorites from "./components/Favorites";
 function App() {
   const [theme, setTheme] = useState("light");
 
+  console.log(process.env.REACT_APP_API_KEY);
+
   return (
     <Router>
       <div className={theme === "light" ? "app" : "darkApp"}>
