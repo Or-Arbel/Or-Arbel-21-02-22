@@ -1,3 +1,8 @@
+**Weather app **
+
+Tools: React.js + hooks , Redux toolkit state management, Axios, API, Router, Css, Material UI and more.
+![image](https://user-images.githubusercontent.com/61117215/155948242-08fc7f9c-5b81-4972-b985-9cdee9e0bba2.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# weather-favorites" 
+"# weather-favorites"

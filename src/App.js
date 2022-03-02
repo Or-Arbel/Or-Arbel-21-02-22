@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -6,36 +6,43 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Nav from "./components/Nav";
-import Homepage from "./components/Homepage";
-import Favorites from "./components/Favorites";
+import Nav from "./components/Nav/Nav";
+import Homepage from "./components/Homepage/Homepage";
+import Favorites from "./components/Favorites/Favorites";
+
+export const ThemeContext = createContext();
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
 
   return (
-    <Router>
-      <div className={theme === "light" ? "app" : "darkApp"}>
-        <Nav theme={theme} setTheme={setTheme} />
-        <Switch>
-          <Route
-            exact
-            path="/Or-Arbel-21-02-22/"
-            component={() => {
-              return <Homepage theme={theme} />;
-            }}
-          />
-          <Route
-            exact
-            path="/favorites/"
-            component={() => {
-              return <Favorites theme={theme} />;
-            }}
-          />
-          <Redirect to="/Or-Arbel-21-02-22/" />
-        </Switch>
-      </div>
-    </Router>
+    <ThemeContext.Provider value={{ isDarkMode, toggleMode }}>
+      <Router>
+        <div className={isDarkMode ? "darkApp" : "app"}>
+          <Nav />
+          <Switch>
+            <Route
+              exact
+              path="/Or-Arbel-21-02-22/"
+              component={() => {
+                return <Homepage />;
+              }}
+            />
+            <Route
+              exact
+              path="/favorites/"
+              component={() => {
+                return <Favorites />;
+              }}
+            />
+            <Redirect to="/Or-Arbel-21-02-22/" />
+          </Switch>
+        </div>
+      </Router>
+    </ThemeContext.Provider>
   );
 }
 

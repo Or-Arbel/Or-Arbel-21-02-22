@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { remove } from "../redux/favoritesSlice";
-import { setCity } from "../redux/citySlice";
+import { remove } from "../../redux/favoritesSlice";
+import { setCity } from "../../redux/citySlice";
 import Fade from "react-reveal/Fade";
+import { ThemeContext } from "../../App";
 
-function Favorites(props) {
+function Favorites() {
+  const { isDarkMode } = useContext(ThemeContext);
+
   const favoriteCities = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
 
@@ -22,7 +25,7 @@ function Favorites(props) {
   return (
     <Fade top cascade>
       <div>
-        <h1 className={props.theme === "light" ? "lightTitle" : "darkTitle"}>
+        <h1 className={isDarkMode ? "darkTitle" : "lightTitle"}>
           Favorite cities
         </h1>
         {favoriteCities.length > 0 ? (
@@ -52,7 +55,7 @@ function Favorites(props) {
           })
         ) : (
           <>
-            <p style={{ color: props.theme === "dark" ? "white" : "black" }}>
+            <p style={{ color: isDarkMode ? "white" : "black" }}>
               <span style={{ fontWeight: "bold" }}>No favorites yet.</span>
               <br />
               Keep track of the cities you're interested in by clicking 'Add to

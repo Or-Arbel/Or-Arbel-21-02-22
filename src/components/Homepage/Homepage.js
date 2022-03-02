@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import TextField from "@mui/material/TextField";
@@ -13,10 +13,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Fade from "react-reveal/Fade";
 
 import { useSelector, useDispatch } from "react-redux";
-import { add, remove } from "../redux/favoritesSlice";
-import { setCity } from "../redux/citySlice";
+import { add, remove } from "../../redux/favoritesSlice";
+import { setCity } from "../../redux/citySlice";
+import { ThemeContext } from "../../App";
 
-function Homepage(props) {
+function Homepage() {
+  const { isDarkMode } = useContext(ThemeContext);
+
   const favoriteCities = useSelector((state) => state.favorites);
   const cityData = useSelector((state) => state.city);
   const dispatch = useDispatch();
@@ -54,7 +57,6 @@ function Homepage(props) {
   }, []);
 
   useEffect(async () => {
-    let isCelsius = tempScale === "celsius" ? true : false;
     if (cityData.id) {
       await getFiveDaysWeather(cityData.id);
       await getCityWeather(cityData.id);
@@ -208,9 +210,7 @@ function Homepage(props) {
   return (
     <Fade>
       <div>
-        <h1 className={props.theme === "light" ? "lightTitle" : "darkTitle"}>
-          Weather App
-        </h1>
+        <h1 className={isDarkMode ? "darkTitle" : "lightTitle"}>Weather App</h1>
         <div className="search-box">
           <Autocomplete
             disablePortal
@@ -246,9 +246,7 @@ function Homepage(props) {
 
         <div
           className={
-            props.theme === "light"
-              ? "weather-box"
-              : "weather-box dark-weather-box"
+            isDarkMode ? "weather-box dark-weather-box" : "weather-box"
           }
         >
           <div className="weather-box-city">
