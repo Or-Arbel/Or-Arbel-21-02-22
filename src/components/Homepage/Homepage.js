@@ -56,11 +56,14 @@ function Homepage() {
     }
   }, []);
 
-  useEffect(async () => {
-    if (cityData.id) {
-      await getFiveDaysWeather(cityData.id);
-      await getCityWeather(cityData.id);
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      if (cityData.id) {
+        await getFiveDaysWeather(cityData.id);
+        await getCityWeather(cityData.id);
+      }
+    };
+    fetchData();
   }, [cityData]);
 
   const getCityWeather = async (cityKey) => {
@@ -94,7 +97,7 @@ function Homepage() {
     let stringDay = "";
     let weeklyArr = weeklyWeather ?? [];
 
-    let response_c = await axios
+    await axios
       .get(
         `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=true`
       )
@@ -117,7 +120,7 @@ function Homepage() {
         console.warn(err);
       });
 
-    let response_f = await axios
+    await axios
       .get(
         `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=false`
       )
@@ -210,7 +213,6 @@ function Homepage() {
   return (
     <Fade>
       <div>
-        <h1 className={isDarkMode ? "darkTitle" : "lightTitle"}>Weather App</h1>
         <div className="search-box">
           <Autocomplete
             disablePortal
