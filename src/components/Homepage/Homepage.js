@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { add, remove } from "../../redux/favoritesSlice";
 import { setCity } from "../../redux/citySlice";
 import { ThemeContext } from "../../App";
+import FutureWeather from "../FutureWeather/FutureWeather";
 
 function Homepage() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -29,7 +30,6 @@ function Homepage() {
 
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentWeather, setCurrentWeather] = useState({});
-  const [weeklyWeather, setWeeklyWeather] = useState([]);
 
   const getDefaultCity = async () => {
     let response = await axios
@@ -47,6 +47,9 @@ function Homepage() {
       })
       .catch((err) => {
         console.warn(err);
+        /*
+        error logic
+        */
       });
   };
 
@@ -59,7 +62,6 @@ function Homepage() {
   useEffect(() => {
     const fetchData = async () => {
       if (cityData.id) {
-        await getFiveDaysWeather(cityData.id);
         await getCityWeather(cityData.id);
       }
     };
@@ -82,65 +84,6 @@ function Homepage() {
       .catch((err) => {
         console.warn(err);
       });
-  };
-
-  const getFiveDaysWeather = async (cityKey) => {
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let stringDay = "";
-    let weeklyArr = weeklyWeather ?? [];
-
-    await axios
-      .get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=true`
-      )
-      .then((res) => res.data.DailyForecasts)
-      .then((res) => {
-        for (let i = 0; i < res.length; i++) {
-          stringDay = days[new Date(res[i].Date).getDay()];
-          if (weeklyArr[i] === undefined) {
-            weeklyArr[i] = { day: stringDay };
-          }
-          weeklyArr[i].minTempCelsius = Math.round(
-            res[i].Temperature.Minimum.Value
-          );
-          weeklyArr[i].maxTempCelsius = Math.round(
-            res[i].Temperature.Maximum.Value
-          );
-        }
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
-
-    await axios
-      .get(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${process.env.REACT_APP_API_KEY}&metric=false`
-      )
-      .then((res) => res.data.DailyForecasts)
-      .then((res) => {
-        for (let i = 0; i < res.length; i++) {
-          stringDay = days[new Date(res[i].Date).getDay()];
-          weeklyArr[i].minTempFahrenheit = Math.round(
-            res[i].Temperature.Minimum.Value
-          );
-          weeklyArr[i].maxTempFahrenheit = Math.round(
-            res[i].Temperature.Maximum.Value
-          );
-        }
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
-
-    setWeeklyWeather(weeklyArr);
   };
 
   const isInFavorites = () => {
@@ -309,34 +252,13 @@ function Homepage() {
               />
             </RadioGroup>
           </FormControl>
-
-          <div className="futureData">
-            {weeklyWeather.map((e, i) => {
-              return (
-                <div className="futureWeather-box" key={i}>
-                  <p>
-                    {e.day}
-                    <br />
-                    {tempScale === "celsius" && e.minTempCelsius && (
-                      <>
-                        {e.minTempCelsius}°C / {e.maxTempCelsius}°C
-                      </>
-                    )}
-                    {tempScale === "fahrenheit" && e.minTempFahrenheit && (
-                      <>
-                        {e.minTempFahrenheit}°F / {e.maxTempFahrenheit}°F
-                      </>
-                    )}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
           <p>
             ☀ Wherever you go, no matter what the weather, always bring your own
             sunshine. ☀
           </p>
         </div>
+
+        <FutureWeather tempScale={tempScale} cityKey={cityData.id} />
       </div>
     </Fade>
   );

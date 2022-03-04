@@ -51,7 +51,7 @@ html {
   margin: 10px auto;
   width: 60%;
   padding: 15px;
-  background-color: rgb(128, 128, 128, 0.3);
+  /* background-color: rgb(128, 128, 128, 0.3); */
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -131,28 +131,6 @@ html {
   .favorite-container {
     width: 80%;
     font-size: 1em;
-  }
-}
-
-.futureData {
-  display: flex;
-  justify-content: center;
-  padding: 2px;
-  flex-wrap: wrap;
-}
-.futureWeather-box {
-  background-color: rgb(255, 255, 255, 0.4);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin: 5px;
-  padding: 2px 20px;
-  flex-grow: 1;
-}
-
-@media screen and (max-width: 992px) {
-  .futureWeather-box {
-    width: 40%;
   }
 }
 
