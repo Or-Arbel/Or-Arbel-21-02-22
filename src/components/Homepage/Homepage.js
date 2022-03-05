@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Radio from "@mui/material/Radio";
@@ -17,6 +15,7 @@ import { add, remove } from "../../redux/favoritesSlice";
 import { setCity } from "../../redux/citySlice";
 import { ThemeContext } from "../../App";
 import FutureWeather from "../FutureWeather/FutureWeather";
+import CitySearchInput from "../CitySearchInput/CitySearchInput";
 
 function Homepage() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -28,7 +27,6 @@ function Homepage() {
   const [openErrorToast, setOpenErrorToast] = useState(false);
   const [tempScale, setTempScale] = useState("celsius");
 
-  const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentWeather, setCurrentWeather] = useState({});
 
   const getDefaultCity = async () => {
@@ -111,40 +109,6 @@ function Homepage() {
     }
   };
 
-  const getOptions = (query) => {
-    axios
-      .get(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${query}`
-      )
-      .then((res) => res.data)
-      .then((res) => {
-        if (res) {
-          let newOptionsArr = [];
-          res.forEach((element) => {
-            newOptionsArr.push({
-              cityName: element.LocalizedName,
-              country: element.Country.LocalizedName,
-              id: element.Key,
-              key: element.Key,
-            });
-          });
-          setCitiesOptions(newOptionsArr);
-        }
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
-  };
-
-  const onInputChangeHandler = (event, value) => {
-    const regex = /^[a-zA-Z\s]*$/;
-    if (!regex.test(value)) {
-      setOpenErrorToast(true);
-    } else {
-      getOptions(value);
-    }
-  };
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -157,22 +121,7 @@ function Homepage() {
     <Fade>
       <div>
         <div className="search-box">
-          <Autocomplete
-            disablePortal
-            id="cities-search-box"
-            onInputChange={(e, v) => onInputChangeHandler(e, v)}
-            onChange={(e, v) => {
-              if (v !== null) {
-                dispatch(setCity(v));
-              }
-            }}
-            options={citiesOptions}
-            getOptionLabel={(option) => option.cityName}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Search City" />
-            )}
-          />
+          <CitySearchInput setOpenErrorToast={setOpenErrorToast} />
 
           <Snackbar
             open={openErrorToast}
@@ -198,24 +147,21 @@ function Homepage() {
             {cityData.id && currentWeather.celsius ? (
               <>
                 {cityData.cityName}, {cityData.country}
+                <button
+                  onClick={() => {
+                    favoriteToggleHandler(isInFavorites());
+                  }}
+                >
+                  {isInFavorites() ? (
+                    <BsSuitHeartFill size={20} />
+                  ) : (
+                    <BsSuitHeart size={20} />
+                  )}
+                </button>
               </>
             ) : (
               <div />
             )}
-            <button
-              onClick={() => {
-                favoriteToggleHandler(isInFavorites());
-              }}
-            >
-              {isInFavorites() ? (
-                <BsSuitHeartFill size={20} />
-              ) : (
-                <BsSuitHeart size={20} />
-              )}
-              <span>
-                {isInFavorites() ? "Remove from favorites" : "Add to favorites"}
-              </span>
-            </button>
           </div>
           <div className="temperature">
             {cityData.id && currentWeather.celsius ? (

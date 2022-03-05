@@ -62,7 +62,6 @@ const FutureWeather = (props) => {
       });
 
     setWeeklyWeather(weeklyArr);
-    console.log(weeklyArr);
   };
 
   useEffect(() => {

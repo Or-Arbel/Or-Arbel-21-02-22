@@ -10,13 +10,13 @@ html {
   background: #67b26f; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to top,
-    #4ca2cd,
-    #67b26f
+    #66ccff,
+    #f1f8ff
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to top,
-    #4ca2cd,
-    #67b26f
+    #66ccff,
+    #f1f8ff
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .darkApp {
@@ -40,21 +40,18 @@ html {
   padding: 5px;
 }
 
-.MuiAutocomplete-root,
-.MuiAutocomplete-hasPopupIcon,
-.css-viou3o-MuiAutocomplete-root {
+.MuiAutocomplete-hasPopupIcon.css-viou3o-MuiAutocomplete-root
+  .MuiOutlinedInput-root,
+.MuiAutocomplete-hasClearIcon.css-viou3o-MuiAutocomplete-root
+  .MuiOutlinedInput-root {
+  border-radius: 30px;
   background-color: rgb(230, 248, 255);
-  border-radius: 4px;
 }
 
 .weather-box {
   margin: 10px auto;
-  width: 60%;
+  width: 50%;
   padding: 15px;
-  /* background-color: rgb(128, 128, 128, 0.3); */
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
   color: darkblue;
 }
 .dark-weather-box {
@@ -137,31 +134,26 @@ html {
 .weather-box-city {
   display: flex;
   justify-content: space-between;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: bold;
   align-items: center;
 }
 
 .weather-box-city button {
-  background-color: rgb(228, 247, 255);
+  background-color: transparent;
   color: darkblue;
   text-decoration: none;
   display: inline-block;
+  align-items: center;
   border: none;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  font-weight: bold;
-  font-size: 1em;
   min-width: 250px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5px;
-}
-
-.weather-box-city button:hover {
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 6px;
 }
 
 @media screen and (max-width: 992px) {

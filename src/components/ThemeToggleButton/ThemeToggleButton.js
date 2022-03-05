@@ -12,11 +12,7 @@ const ThemeToggleButton = () => {
   const modeButtonContent = (
     <div className={styles.modeDiv}>
       {isDarkMode ? <CgSun size={20} /> : <HiMoon size={20} />}
-      {isDarkMode ? (
-        <span>Change to light mode</span>
-      ) : (
-        <span>Change to dark mode</span>
-      )}
+      {isDarkMode ? <span>Light mode</span> : <span>Dark mode</span>}
     </div>
   );
 
