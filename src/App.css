@@ -33,37 +33,12 @@ html {
   color: #4ca2cd;
 }
 
-.search-box {
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-}
-
 .MuiAutocomplete-hasPopupIcon.css-viou3o-MuiAutocomplete-root
   .MuiOutlinedInput-root,
 .MuiAutocomplete-hasClearIcon.css-viou3o-MuiAutocomplete-root
   .MuiOutlinedInput-root {
   border-radius: 30px;
   background-color: rgb(230, 248, 255);
-}
-
-.weather-box {
-  margin: 10px auto;
-  width: 50%;
-  padding: 15px;
-  color: darkblue;
-}
-.dark-weather-box {
-  color: #c1cde2;
-}
-
-.weather-box h1 {
-  font-size: 5em;
-  padding: 0;
-  margin: 0;
-  font-weight: normal;
-  color: white;
 }
 
 .favorite-container {
@@ -113,8 +88,6 @@ html {
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media screen and (max-width: 992px) {
-  .search-box,
-  .weather-box,
   .favorite-container {
     width: 70%;
     font-size: 1em;
@@ -123,50 +96,8 @@ html {
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .search-box,
-  .weather-box,
   .favorite-container {
     width: 80%;
     font-size: 1em;
   }
-}
-
-.weather-box-city {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.5em;
-  font-weight: bold;
-  align-items: center;
-}
-
-.weather-box-city button {
-  background-color: transparent;
-  color: darkblue;
-  text-decoration: none;
-  display: inline-block;
-  align-items: center;
-  border: none;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  min-width: 250px;
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 992px) {
-  .weather-box-city button span {
-    display: none;
-  }
-
-  .weather-box-city button {
-    min-width: 0px;
-  }
-}
-
-.temperature {
-  margin: 0 auto;
-  width: 100%;
 }

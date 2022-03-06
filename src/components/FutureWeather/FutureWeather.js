@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 import axios from "axios";
 import styles from "./styles.module.scss";
 
 const FutureWeather = (props) => {
   const [weeklyWeather, setWeeklyWeather] = useState([]);
+  const city = useSelector((state) => state.city);
 
   const getFiveDaysWeather = async (cityKey) => {
     const days = [
@@ -66,39 +69,40 @@ const FutureWeather = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (props.cityKey) {
-        await getFiveDaysWeather(props.cityKey);
+      if (city && city.id) {
+        await getFiveDaysWeather(city.id);
       }
     };
     fetchData();
-  }, [props.cityKey]);
+  }, [city]);
 
-  return (
-    <div className={styles.futureData} key={props.cityKey}>
-      {weeklyWeather.map((e, i) => {
-        return (
-          <div
-            className={styles.futureWeatherBox}
-            key={e.day + e.minTempCelsius}
-          >
-            <div className={styles.day}>{e.day}</div>
-            <p>
-              <br />
-              {props.tempScale === "celsius" && e.minTempCelsius !== undefined && (
+  const showData = () => {
+    return weeklyWeather.map((e, i) => {
+      return (
+        <div className={styles.futureWeatherBox} key={i}>
+          <div className={styles.day}>{e.day}</div>
+          <p>
+            <br />
+            {props.tempScale === "celsius" && e.minTempCelsius !== undefined && (
+              <>
+                {e.minTempCelsius}°C / {e.maxTempCelsius}°C
+              </>
+            )}
+            {props.tempScale === "fahrenheit" &&
+              e.minTempFahrenheit !== undefined && (
                 <>
-                  {e.minTempCelsius}°C / {e.maxTempCelsius}°C
+                  {e.minTempFahrenheit}°F / {e.maxTempFahrenheit}°F
                 </>
               )}
-              {props.tempScale === "fahrenheit" &&
-                e.minTempFahrenheit !== undefined && (
-                  <>
-                    {e.minTempFahrenheit}°F / {e.maxTempFahrenheit}°F
-                  </>
-                )}
-            </p>
-          </div>
-        );
-      })}
+          </p>
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div className={styles.futureData} key={city.id}>
+      {showData()}
     </div>
   );
 };

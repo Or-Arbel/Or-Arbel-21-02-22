@@ -16,6 +16,7 @@ import { setCity } from "../../redux/citySlice";
 import { ThemeContext } from "../../App";
 import FutureWeather from "../FutureWeather/FutureWeather";
 import CitySearchInput from "../CitySearchInput/CitySearchInput";
+import styles from "./styles.module.scss";
 
 function Homepage() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -57,15 +58,6 @@ function Homepage() {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (cityData.id) {
-        await getCityWeather(cityData.id);
-      }
-    };
-    fetchData();
-  }, [cityData]);
-
   const getCityWeather = async (cityKey) => {
     axios
       .get(
@@ -83,6 +75,15 @@ function Homepage() {
         console.warn(err);
       });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (cityData.id) {
+        await getCityWeather(cityData.id);
+      }
+    };
+    fetchData();
+  }, [cityData]);
 
   const isInFavorites = () => {
     for (let i = 0; i < favoriteCities.length; i++) {
@@ -120,30 +121,22 @@ function Homepage() {
   return (
     <Fade>
       <div>
-        <div className="search-box">
+        <div className={styles.searchWrappper}>
           <CitySearchInput setOpenErrorToast={setOpenErrorToast} />
-
-          <Snackbar
-            open={openErrorToast}
-            autoHideDuration={6000}
-            onClose={handleClose}
-          >
-            <Alert
-              onClose={handleClose}
-              severity="error"
-              sx={{ width: "100%" }}
-            >
-              Please use English characters only.
-            </Alert>
-          </Snackbar>
         </div>
 
-        <div
-          className={
-            isDarkMode ? "weather-box dark-weather-box" : "weather-box"
-          }
+        <Snackbar
+          open={openErrorToast}
+          autoHideDuration={6000}
+          onClose={handleClose}
         >
-          <div className="weather-box-city">
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            Please use English characters only.
+          </Alert>
+        </Snackbar>
+
+        <div className={isDarkMode ? styles.weatherBoxDark : styles.weatherBox}>
+          <div className={styles.cityData}>
             {cityData.id && currentWeather.celsius ? (
               <>
                 {cityData.cityName}, {cityData.country}
@@ -163,7 +156,7 @@ function Homepage() {
               <div />
             )}
           </div>
-          <div className="temperature">
+          <div className={styles.temperature}>
             {cityData.id && currentWeather.celsius ? (
               <>
                 <h1>
