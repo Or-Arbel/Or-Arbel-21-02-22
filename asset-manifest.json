@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Or-Arbel-21-02-22/static/css/main.3077ab8a.chunk.css",
-    "main.js": "/Or-Arbel-21-02-22/static/js/main.d63d1914.chunk.js",
-    "main.js.map": "/Or-Arbel-21-02-22/static/js/main.d63d1914.chunk.js.map",
+    "main.css": "/Or-Arbel-21-02-22/static/css/main.bc067380.chunk.css",
+    "main.js": "/Or-Arbel-21-02-22/static/js/main.1c1b38a4.chunk.js",
+    "main.js.map": "/Or-Arbel-21-02-22/static/js/main.1c1b38a4.chunk.js.map",
     "runtime-main.js": "/Or-Arbel-21-02-22/static/js/runtime-main.1e3fad20.js",
     "runtime-main.js.map": "/Or-Arbel-21-02-22/static/js/runtime-main.1e3fad20.js.map",
-    "static/js/2.9d351a5d.chunk.js": "/Or-Arbel-21-02-22/static/js/2.9d351a5d.chunk.js",
-    "static/js/2.9d351a5d.chunk.js.map": "/Or-Arbel-21-02-22/static/js/2.9d351a5d.chunk.js.map",
+    "static/js/2.f10f8f76.chunk.js": "/Or-Arbel-21-02-22/static/js/2.f10f8f76.chunk.js",
+    "static/js/2.f10f8f76.chunk.js.map": "/Or-Arbel-21-02-22/static/js/2.f10f8f76.chunk.js.map",
     "index.html": "/Or-Arbel-21-02-22/index.html",
-    "static/css/main.3077ab8a.chunk.css.map": "/Or-Arbel-21-02-22/static/css/main.3077ab8a.chunk.css.map",
-    "static/js/2.9d351a5d.chunk.js.LICENSE.txt": "/Or-Arbel-21-02-22/static/js/2.9d351a5d.chunk.js.LICENSE.txt"
+    "static/css/main.bc067380.chunk.css.map": "/Or-Arbel-21-02-22/static/css/main.bc067380.chunk.css.map",
+    "static/js/2.f10f8f76.chunk.js.LICENSE.txt": "/Or-Arbel-21-02-22/static/js/2.f10f8f76.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1e3fad20.js",
-    "static/js/2.9d351a5d.chunk.js",
-    "static/css/main.3077ab8a.chunk.css",
-    "static/js/main.d63d1914.chunk.js"
+    "static/js/2.f10f8f76.chunk.js",
+    "static/css/main.bc067380.chunk.css",
+    "static/js/main.1c1b38a4.chunk.js"
   ]
 }
