@@ -5,26 +5,6 @@
   padding: 5px;
 }
 
-/* On screens that are 992px wide or less, go from four columns to two columns */
-@media screen and (max-width: 992px) {
-  .searchWrappper,
-  .weatherBox,
-  .favorite-container {
-    width: 70%;
-    font-size: 1em;
-  }
-}
-
-/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .searchWrappper,
-  .weatherBox,
-  .favorite-container {
-    width: 80%;
-    font-size: 1em;
-  }
-}
-
 .weatherBox {
   margin: 10px auto;
   width: 50%;
@@ -32,18 +12,21 @@
   color: darkblue;
 
   &Dark {
+    margin: 10px auto;
+    width: 50%;
+    padding: 15px;
     color: #c1cde2;
-  }
-
-  h1 {
-    font-size: 5em;
-    padding: 0;
-    margin: 0;
-    font-weight: normal;
-    color: white;
   }
 }
 
+.weatherBox h1,
+.weatherBoxDark h1 {
+  font-size: 5em;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  color: white;
+}
 .cityData {
   display: flex;
   justify-content: space-between;
@@ -51,18 +34,12 @@
   font-weight: bold;
   align-items: center;
 
-  button {
+  .favoritesToggleButton {
     background-color: transparent;
     color: darkblue;
-    text-decoration: none;
-    display: inline-block;
-    align-items: center;
     border: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    min-width: 250px;
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 5px;
     cursor: pointer;
@@ -70,11 +47,7 @@
 }
 
 @media screen and (max-width: 992px) {
-  //   .cityData button span {
-  //     display: none;
-  //   }
-
-  .cityData button {
+  .favoritesToggleButton {
     min-width: 0px;
   }
 }
@@ -82,4 +55,22 @@
 .temperature {
   margin: 0 auto;
   width: 100%;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .weatherBox,
+  .weatherBoxDark {
+    width: 70%;
+    font-size: 1em;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .weatherBox,
+  .weatherBoxDark {
+    width: 80%;
+    font-size: 1em;
+  }
 }

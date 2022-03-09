@@ -141,6 +141,7 @@ function Homepage() {
               <>
                 {cityData.cityName}, {cityData.country}
                 <button
+                  className={styles.favoritesToggleButton}
                   onClick={() => {
                     favoriteToggleHandler(isInFavorites());
                   }}
